@@ -4,18 +4,20 @@ FROM node:lts-alpine
 
 ARG APK_PACKAGES="git"
 
+WORKDIR /source
+
 RUN echo "**** install binary packages ****" && \
     apk add $APK_INSTALL_OPTIONS $APK_PACKAGES
 
 # Get upstream
-RUN git clone https://github.com/Hypfer/ICantBelieveItsNotValetudo /source \
-    && cd /source
+RUN git clone https://github.com/Hypfer/ICantBelieveItsNotValetudo /source
 
-WORKDIR /source
+WORKDIR /app
+
+COPY package.json /app
+COPY package-lock.json /app
 
 RUN npm ci
 COPY . /app
-
-WORKDIR /app
 
 CMD ["npm", "start"]
