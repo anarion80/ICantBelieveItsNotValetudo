@@ -59,8 +59,8 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            docker.io/anarion/pyload-ng
-            ghcr.io/anarion80/pyload-ng
+            docker.io/anarion/icbinv
+            ghcr.io/anarion80/icbinv
           tags: |
             # set latest tag for default branch
             type=raw,value=latest,enable=${{ matrix.branch == 'master' }}
